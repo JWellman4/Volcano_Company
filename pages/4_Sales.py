@@ -11,7 +11,7 @@ def load_data(file_path):
     return pd.read_csv(file_path)
 
 # Load the data
-df = load_data('C:/Users/jonat/OneDrive/Desktop/matplotlib/Financials.csv')
+df = load_data('Financials.csv')
 df['Date'] = pd.to_datetime(df['Date'])
 
 st.session_state.update(st.session_state)
