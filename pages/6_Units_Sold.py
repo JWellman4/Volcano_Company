@@ -13,6 +13,8 @@ def load_data(file_path):
 # Load the data
 df = load_data('Financials.csv')
 df['Date'] = pd.to_datetime(df['Date'])
+min_date = min(df['Date'])
+max_date = max(df['Date'])
 
 st.session_state.update(st.session_state)
 
@@ -30,7 +32,7 @@ def options_select6():
             st.session_state["max_selections6"] = len(available_options6)
 
 def date_selected6():
-    if "selected_date6" not in st.session_state:
+    if "selected_date6" in st.session_state:
         if len(select_week) > 1:
             end_date = pd.to_datetime(select_week[1])
         else:
@@ -60,13 +62,13 @@ available_options6 = options_with_select_all6
 if "max_selections6" not in st.session_state:
     st.session_state["max_selections6"] = len(available_options6)
 
+if "selected_date6" not in st.session_state:
+    st.session_state["selected_date6"] = (min_date, max_date)
+
 with st.sidebar:
     st.sidebar.title('Select Fitlers')
-    min_date = min(df['Date'])
-    max_date = max(df['Date'])
     select_week = st.date_input(
         label='Select Date(s)',
-        value=(min_date, max_date),
         key="selected_date6",
         on_change=date_selected6
     )
@@ -87,6 +89,9 @@ if len(select_week) > 1:
     end_date = pd.to_datetime(select_week[1])
 else:
     end_date = start_date
+
+if "selected_date3" not in st.session_state:
+    st.session_state["selected_date3"] = (min_date, max_date)
 
 # Filter DataFrame based on selected options from both multiselects
 if 'Select All' in select_options6:
