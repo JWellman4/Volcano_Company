@@ -69,6 +69,7 @@ with st.sidebar:
     st.sidebar.title('Select Fitlers')
     select_week = st.date_input(
         label='Select Date(s)',
+        key="selected_date5",
         on_change=date_selected5
     )
     select_options5 =st.multiselect(
