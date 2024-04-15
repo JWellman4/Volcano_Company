@@ -13,6 +13,8 @@ def load_data(file_path):
 # Load the data
 df = load_data('Financials.csv')
 df['Date'] = pd.to_datetime(df['Date'])
+min_date = min(df['Date'])
+max_date = max(df['Date'])
 
 st.session_state.update(st.session_state)
 
@@ -30,12 +32,12 @@ def options_select7():
             st.session_state["max_selections7"] = len(available_options7)
 
 def date_selected7():
-    if "selected_date7" not in st.session_state:
+    if "selected_date7" in st.session_state:
         if len(select_week) > 1:
             end_date = pd.to_datetime(select_week[1])
         else:
             end_date = start_date
-
+  
 def format_profit(profit_card):
     if abs(profit_card) >= 1_000_000:
         return '${:.1f}M'.format(profit_card / 1_000_000)
@@ -60,13 +62,13 @@ available_options7 = options_with_select_all7
 if "max_selections7" not in st.session_state:
     st.session_state["max_selections7"] = len(available_options7)
 
+if "selected_date7" not in st.session_state:
+    st.session_state["selected_date7"] = (min_date, max_date)
+
 with st.sidebar:
     st.sidebar.title('Select Fitlers')
-    min_date = min(df['Date'])
-    max_date = max(df['Date'])
     select_week = st.date_input(
         label='Select Date(s)',
-        value=(min_date, max_date),
         key="selected_date7",
         on_change=date_selected7
     )
