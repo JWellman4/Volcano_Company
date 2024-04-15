@@ -174,5 +174,3 @@ for col in row3:
         st.plotly_chart(fig2, use_container_width=True)
     with col6:
         st.plotly_chart(fig3, use_container_width=True)
-
-st.write("selected_date3")
