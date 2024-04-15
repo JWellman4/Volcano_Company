@@ -29,6 +29,13 @@ def options_select3():
         else:
             st.session_state["max_selections3"] = len(available_options3)
 
+def date_selected3():
+    if "selected_date3" not in st.session_state:
+        if len(select_week) > 1:
+            end_date = pd.to_datetime(select_week[1])
+        else:
+            end_date = start_date
+
 def format_sales(sales_card):
     if abs(sales_card) >= 1_000_000:
         return '${:.1f}M'.format(sales_card / 1_000_000)
@@ -60,6 +67,8 @@ with st.sidebar:
     select_week = st.date_input(
         label='Select Date(s)',
         value=(min_date, max_date),
+        key="selected_date3",
+        on_change=date_selected3
     )
     select_options3 =st.multiselect(
             label="Select an Option",
