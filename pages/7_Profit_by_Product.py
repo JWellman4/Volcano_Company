@@ -28,7 +28,14 @@ def options_select7():
             st.session_state["max_selections7"] = 1
         else:
             st.session_state["max_selections7"] = len(available_options7)
-  
+
+def date_selected7():
+    if "selected_date7" not in st.session_state:
+        if len(select_week) > 1:
+            end_date = pd.to_datetime(select_week[1])
+        else:
+            end_date = start_date
+
 def format_profit(profit_card):
     if abs(profit_card) >= 1_000_000:
         return '${:.1f}M'.format(profit_card / 1_000_000)
@@ -60,6 +67,8 @@ with st.sidebar:
     select_week = st.date_input(
         label='Select Date(s)',
         value=(min_date, max_date),
+        key="selected_date7",
+        on_change=date_selected7
     )
     select_options7 =st.multiselect(
             label="Select a Product",
