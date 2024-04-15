@@ -13,6 +13,8 @@ def load_data(file_path):
 # Load the data
 df = load_data('Financials.csv')
 df['Date'] = pd.to_datetime(df['Date'])
+min_date = min(df['Date'])
+max_date = max(df['Date'])
 
 st.session_state.update(st.session_state)
 
@@ -60,14 +62,13 @@ available_options5 = options_with_select_all5
 if "max_selections5" not in st.session_state:
     st.session_state["max_selections5"] = len(available_options5)
 
+if "selected_date5" not in st.session_state:
+    st.session_state["selected_date5"] = (min_date, max_date)
+
 with st.sidebar:
     st.sidebar.title('Select Fitlers')
-    min_date = min(df['Date'])
-    max_date = max(df['Date'])
     select_week = st.date_input(
         label='Select Date(s)',
-        value=(min_date, max_date),
-        key="selected_date5",
         on_change=date_selected5
     )
     select_options5 =st.multiselect(
