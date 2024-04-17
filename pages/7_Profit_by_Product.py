@@ -105,7 +105,7 @@ product_net_profit_margin = df_filtered.groupby(['Product'])['Profit'].sum() / g
 #Cards
 profit_card = df_filtered['Profit'].sum()
 profit_formatted = format_profit(profit_card)
-gross_sales_card = df_filtered['Sales'].sum()
+gross_sales_card = df_filtered['Gross Sales'].sum()
 gross_sales_formatted= format_sales(gross_sales_card)
 profit_margin_formatted = "{:,.2f}%".format(profit_margin_card)
 
