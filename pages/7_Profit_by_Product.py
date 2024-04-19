@@ -128,6 +128,7 @@ fig = px.line(
         y= formatted_net_profit_margin,
         width=500,
         height=300,
+        markers=True,
         title='Net Profit Margins Trends'
 )
 fig.update_traces(hovertemplate= '<b>%{x| %B %Y}<br>'+ '%{y:,.2f}%', line_color='#39FF14')
