@@ -122,6 +122,7 @@ fig = px.line(
         title='Units Sold Trend',
         width=500,
         height=300,
+        markers=True
     )
 fig.update_traces(hovertemplate= '<b>%{x| %B %Y}<br>'+ '%{y:,.0f}', line_color='#CC00FF')
 fig.update_xaxes(dtick= 'M1', tickformat='%b %Y')
