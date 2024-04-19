@@ -116,6 +116,7 @@ fig = px.line(
         title='Profit Trend',
         width=500,
         height=300,
+        markers=True
     )
 fig.update_traces(hovertemplate= '<b>%{x| %B %Y}<br>'+ '$%{y:,.0f}', line_color='#FF6600')
 fig.update_xaxes(dtick= 'M1',tickformat='%b %Y')
